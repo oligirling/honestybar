@@ -10,7 +10,7 @@ services:
     mariadb:
       build:
         context: .
-        dockerfile: Dockerfile.mysql
+        dockerfile: Dockerfile.mariadb
       container_name: honestybar-mariadb
       working_dir: /application
       volumes:
@@ -36,7 +36,9 @@ services:
 
     wpe:
       restart: always
-      build: ./balena-wpe
+      build:
+        context: ./
+        dockerfile: Dockerfile.wpe
       privileged: true
       ports:
         - "8080:8080"

@@ -13,6 +13,6 @@ RUN wget -O tohora.tgz \
     && tar xzf tohora.tgz \
     && rm tohora.tgz
 
-COPY /public /var/lib/public_html
+COPY public /var/lib/public_html
 
 ENV WPE_URL="http://localhost:7070/index.php"
