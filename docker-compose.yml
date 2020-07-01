@@ -3,26 +3,20 @@
 ###############################################################################
 version: "2"
 
-#volumes:
-#  volume_mysql:
-#    driver: local
-#    driver_opts:
-#      type: none
-#      o: bind
-#      device: /Users/oli.girling/Projects/girlon-bury/mysql-data
-
 volumes:
-  mysql-data:
+  mariadb-data:
 
 services:
     mariadb:
       build:
         context: .
         dockerfile: Dockerfile.mysql
-      container_name: honestybar-mysql
+      container_name: honestybar-mariadb
       working_dir: /application
       volumes:
-        - mysql-data:/config/databases
+        - mariadb-data:/config/databases
+      #volumes:
+      #  - ./mariadb-data:/config/databases
       environment:
         - MYSQL_ROOT_PASSWORD=root
         - MYSQL_DATABASE=honesty
@@ -39,6 +33,13 @@ services:
       working_dir: /application
       ports:
        - "7070:80"
+
+    wpe:
+      restart: always
+      build: ./balena-wpe
+      privileged: true
+      ports:
+        - "8080:8080"
 
     php-fpm:
       build:

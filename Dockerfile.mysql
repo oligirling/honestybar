@@ -1,5 +1,0 @@
-FROM linuxserver/mariadb:arm32v6-110.3.12mariabionic-ls1
-WORKDIR "/application"
-
-COPY . /application
-#COPY mysql-data /config/databases
