@@ -1,0 +1,49 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "2"
+
+#volumes:
+#  volume_mysql:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      o: bind
+#      device: /Users/oli.girling/Projects/girlon-bury/mysql-data
+
+volumes:
+  mysql-data:
+
+services:
+    mariadb:
+      build:
+        context: .
+        dockerfile: Dockerfile.mysql
+      container_name: honestybar-mysql
+      working_dir: /application
+      volumes:
+        - mysql-data:/config/databases
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=honesty
+        - MYSQL_USER=oli
+        - MYSQL_PASSWORD=password
+      ports:
+        - "7072:3306"
+
+    webserver:
+      build:
+        context: .
+        dockerfile: Dockerfile.nginx
+      container_name: honestybar-webserver
+      working_dir: /application
+      ports:
+       - "7070:80"
+
+    php-fpm:
+      build:
+        context: .
+        dockerfile: Dockerfile.php-fpm
+      container_name: honestybar-php-fpm
+      working_dir: /application
+

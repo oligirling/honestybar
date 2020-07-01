@@ -1,0 +1,38 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "2"
+services:
+
+    mysql:
+      image: mysql:5.7
+      container_name: honestybar-mysql
+      working_dir: /application
+      volumes:
+        - ./mysql-data:/var/lib/mysql
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=honesty
+        - MYSQL_USER=oli
+        - MYSQL_PASSWORD=password
+      ports:
+        - "7072:3306"
+
+    webserver:
+      image: nginx:alpine
+      container_name: honestybar-webserver
+      working_dir: /application
+      volumes:
+          - ~/Projects/girlon-bury:/application
+          - ~/Projects/girlon-bury/phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "7070:80"
+
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: honestybar-php-fpm
+      working_dir: /application
+      volumes:
+        - ~/Projects/girlon-bury:/application
+        - ~/Projects/girlon-bury/phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+

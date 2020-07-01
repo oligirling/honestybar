@@ -1,0 +1,9 @@
+FROM arm32v7/php
+WORKDIR "/application"
+
+COPY . /application
+COPY ./phpdocker/php-fpm/php-ini-overrides.ini /etc/php/7.4/fpm/conf.d/99-overrides.ini
+
+COPY public /var/lib/public_html
+
+ENV WPE_URL="file:///var/lib/public_html/index.php"
