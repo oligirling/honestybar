@@ -7,7 +7,7 @@ volumes:
   mariadb-data:
 
 services:
-    mariadb:
+    honestybar-mariadb:
       build:
         context: .
         dockerfile: Dockerfile.mariadb
@@ -22,10 +22,11 @@ services:
         - MYSQL_DATABASE=honesty
         - MYSQL_USER=oli
         - MYSQL_PASSWORD=password
+        - MYSQL_ROOT_HOST=%
       ports:
         - "7072:3306"
 
-    webserver:
+    honestybar-webserver:
       build:
         context: .
         dockerfile: Dockerfile.nginx
@@ -43,10 +44,12 @@ services:
       ports:
         - "8080:8080"
 
-    php-fpm:
+    honestybar-php-fpm:
       build:
         context: .
         dockerfile: Dockerfile.php-fpm
       container_name: honestybar-php-fpm
       working_dir: /application
+      ports:
+        - "9000:9000"
 

@@ -1,6 +1,6 @@
 <?php
 
-const DB_HOST = 'mysql';
+const DB_HOST = 'honestybar-mariadb';
 const DB_NAME = 'honesty';
-const DB_USER = 'oli';
-const DB_PASS = 'password';
+const DB_USER = 'root';
+const DB_PASS = 'root';

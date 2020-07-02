@@ -15,4 +15,4 @@ RUN wget -O tohora.tgz \
 
 COPY public /var/lib/public_html
 
-ENV WPE_URL="http://localhost:7070/index.php"
+ENV WPE_URL="http://websever:7070/index2.php"

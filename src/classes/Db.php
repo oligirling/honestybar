@@ -15,8 +15,12 @@ class Db
             PDO::ATTR_EMULATE_PREPARES   => FALSE,
         );
         $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
-        $this->pdo = new PDO($dsn, DB_USER, DB_PASS, $opt);
-
+        try {
+            $this->pdo = new PDO($dsn, DB_USER, DB_PASS, $opt);
+        } catch (\Exception $exception) {
+            var_dump($exception->getMessage());
+            die('cannot connect');
+        }
     }
 
     // a classical static method to make it universally available
