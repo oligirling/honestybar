@@ -5,8 +5,6 @@ COPY balena-wpe/udev-rules /etc/udev/rules.d/
 COPY balena-wpe/wpe-init /wpe-init
 RUN chmod +x /wpe-init
 
-CMD ["./wait-for-it.sh", "http://alpine-nginx-php-container:80", "--", "/wpe-init"]
-
 ENV TOHORA_VERSION=0.3.2
 RUN wget -O tohora.tgz \
     "https://github.com/mozz100/tohora/releases/download/v"$TOHORA_VERSION"/tohora_"$TOHORA_VERSION"_Linux_armv5.tar.gz" \

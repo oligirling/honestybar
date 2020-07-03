@@ -201,6 +201,16 @@ button:hover {
 .generate-button.hidden {
     opacity: 0;
 }
+.hidden {
+    display: none;
+}
+
+.add-human {
+    padding-bottom: 20px;
+}
+.add-begin {
+    margin-top: 10px;
+}
 
 #devMenu {
     position: fixed;

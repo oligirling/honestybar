@@ -1,15 +1,14 @@
 # Pull base image
-FROM alpine:3.11
+FROM arm32v7/alpine:3.11
 
 # Label for Information about this Image.
 LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 	org.opencontainers.image.title="alpine-nginx-php" \
-	org.opencontainers.image.description="AlpineLinux with NGINX Webserver and PHP7 (extended) on x86_64 arch" \
+	org.opencontainers.image.description="AlpineLinux with NGINX Webserver and PHP7 (extended) on arm arch" \
 	org.opencontainers.image.licenses="Apache-2.0" \
 	org.opencontainers.image.url="https://hub.docker.com/r/tobi312/alpine-nginx-php" \
 	org.opencontainers.image.source="https://github.com/Tob1asDocker/alpine-nginx-php"
 
-# Define variable
 ENV LANG C.UTF-8
 ENV TZ Europe/Berlin
 ENV TERM=xterm
@@ -53,7 +52,6 @@ RUN addgroup -S $WWW_USER && adduser -D -S -h /var/cache/$WWW_USER -s /sbin/nolo
 	&& mkdir /entrypoint.d
 
 # Copy files and folders into image
-COPY . /application
 COPY config/nginx_default.conf /etc/nginx/conf.d/default.conf
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY . /var/www/html
@@ -62,6 +60,8 @@ RUN chmod +x /entrypoint.sh
 
 # Define workdir
 WORKDIR /var/www/html
+
+RUN composer dump-autoload
 
 # Define mountable directories
 VOLUME ["/etc/nginx/conf.d/","/etc/ssl/nginx","/var/www/html"]

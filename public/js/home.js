@@ -34,6 +34,34 @@ $("#generate-btn").on( "click", function(e) {
     submitTestBarcode();
 });
 
+$("#add-human").on( "click", function(e) {
+    $('.add-human').toggleClass('hidden');
+});
+
+$("#refresh-page").on( "click", function(e) {
+    refreshPage(0);
+});
+
+
+$("#add-human-form").submit(function(e) {
+    e.preventDefault();
+    $.post(
+        "ajax/add-human.php", {
+            fname: $('input[name="f-name"]').val(),
+            lname: $('input[name="l-name"]').val(),
+            gender: $('select[name="gender"]').val(),
+        }
+    ).done( function(data) {
+        let dataObj = JSON.parse(data);
+        if(dataObj.status === 'failed') {
+            $('.add-begin').text(data.message)
+        } else {
+            $('.add-begin').text('Added: Barcode is ' + dataObj.barcode)
+        }
+
+    });
+})
+
 
 function refreshPage(delay)
 {

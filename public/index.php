@@ -58,9 +58,23 @@
                 <input type="checkbox" id="showInputSubmit"><label for="showInputSubmit"> Show input & submit</label><br>
                 <input type="checkbox" id="showGenerateButton"><label for="showGenerateButton"> Show generate button</label><br>
                 <br><br>
+                <div class="add-human hidden">
+                    <form id="add-human-form">
+                        <input class="dev-button" placeholder="First name" name="f-name">
+                        <input class="dev-button" placeholder="Last name" name="l-name">
+                        <select class="dev-button" name="gender">
+                            <option>--- Gender ---</option>
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                        </select>
+                        <button class="add-begin" type="submit">Add being</button>
+                    </form>
+                </div>
                 <a href="/leaderboard.php">
                     <button>View leaderboard</button>
                 </a>
+                <button id="add-human">Add Human</button>
+                <button id="refresh-page">Refresh Page</button>
             </div>
         </div>
     </div>

@@ -29,6 +29,18 @@ class Person
         $this->load();
     }
 
+    public static function addPerson(array $data)
+    {
+        $db = Db::instance();
+        return $db->run('INSERT INTO people (`barcode`, `first_name`, `last_name`, `gender`) VALUES (?, ?, ?, ?)', [
+            $data['barcode'],
+            $data['fname'],
+            $data['lname'],
+            $data['gender'],
+            ]
+        );
+    }
+
     private function load()
     {
         $this->db = Db::instance();
