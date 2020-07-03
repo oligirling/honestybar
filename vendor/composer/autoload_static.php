@@ -16,7 +16,7 @@ class ComposerStaticInite7f6d80b5bf8957c3db9802d1c96fbba
     public static $prefixDirsPsr4 = array (
         'Honest\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/classes',
+            0 => __DIR__ . '/../alpine-nsrcx-php',
         ),
     );
 

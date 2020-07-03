@@ -5,7 +5,7 @@ COPY balena-wpe/udev-rules /etc/udev/rules.d/
 COPY balena-wpe/wpe-init /wpe-init
 RUN chmod +x /wpe-init
 
-CMD [ "/wpe-init" ]
+CMD ["./wait-for-it.sh", "http://alpine-nginx-php-container:80", "--", "/wpe-init"]
 
 ENV TOHORA_VERSION=0.3.2
 RUN wget -O tohora.tgz \
@@ -15,4 +15,5 @@ RUN wget -O tohora.tgz \
 
 COPY public /var/lib/public_html
 
-ENV WPE_URL="http://websever:7070/index2.php"
+ENV WPE_URL="http://alpine-nginx-php-container"
+ENV WPE_BCMRPI_CURSOR=1
