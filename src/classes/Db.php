@@ -57,11 +57,10 @@ class Db
         return $db->run(
             'CREATE TABLE `consumption` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `food` char(55) DEFAULT NULL,
-  `person` varchar(55) DEFAULT NULL,
+  `person` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;');
     }
 
     public static function resetDb()
@@ -71,11 +70,10 @@ class Db
         $db->run(
             'CREATE TABLE `consumption` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `food` char(55) DEFAULT NULL,
-  `person` varchar(55) DEFAULT NULL,
+  `person` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;');
         $db->run('DROP TABLE IF EXISTS `people`;');
         $db->run(
             'CREATE TABLE `people` (

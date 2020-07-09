@@ -82,6 +82,7 @@
                 <button id="add-human">Add Human</button>
                 <button id="refresh-page">Refresh Page</button>
                 <button id="reset-consumption">Reset consumption</button>
+                <button id="reset-consumption-yes">Yes - Reset</button>
             </div>
         </div>
     </div>

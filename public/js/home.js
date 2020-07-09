@@ -1,6 +1,4 @@
-$(document).ready(function() {
-    $("#user-barcode").focus();
-});
+$("#user-barcode").focus();
 
 
 $( "form#pay" ).submit(function( event ) {
@@ -20,21 +18,23 @@ $( "form#pay" ).submit(function( event ) {
 
 $( "#reset-consumption" ).on( "click", function(e) {
     e.preventDefault();
+    $( "#reset-consumption" ).hide();
+    $( "#reset-consumption-yes" ).show();
+});
 
-    var confirmText = "Are you sure you want to reset everything?";
-    if(confirm(confirmText)) {
-        $.get(
-            "ajax/reset-consumption.php",
-        ).done( function(data) {
-            let dataObj = JSON.parse(data);
-            if(dataObj.status === 'failed') {
-                $("#reset-consumption").text(data.message)
-            } else {
-                $("#reset-consumption").text('Done. Refreshing')
-                refreshPage(2000);
-            }
-        });
-    }
+$( "#reset-consumption-yes" ).on( "click", function(e) {
+    e.preventDefault();
+    $.get(
+        "ajax/reset-consumption.php",
+    ).done( function(data) {
+        let dataObj = JSON.parse(data);
+        if(dataObj.status === 'failed') {
+            $( "#reset-consumption-yes" ).text(data.message)
+        } else {
+            $( "#reset-consumption-yes" ).text('Done. Refreshing')
+            refreshPage(2000);
+        }
+    });
 });
 
 $(".modal-toggle").on( "click", function(e) {

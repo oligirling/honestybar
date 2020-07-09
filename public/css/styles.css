@@ -365,7 +365,10 @@ button:hover {
     margin-top: 10px;
 }
 
-
+#reset-consumption-yes {
+    display: none;
+    background-color: red;
+}
 
 
 
