@@ -34,6 +34,9 @@
 
 <div class="center-elements">
     <h2 class="main-text">Scan your wristband before pouring a pint</h2>
+    <div id="scan-arrow-person">
+        <center><img src="images/arrow.png" width="76px" height="76px"></center>
+    </div>
     <form id="pay">
         <input class="dev-element hidden user-barcode" name="user-barcode" id="user-barcode">
         <button class="dev-element hidden dev-button" type="submit">Submit</button>
@@ -73,8 +76,12 @@
                 <a href="/leaderboard.php">
                     <button>View leaderboard</button>
                 </a>
+                <a href="/history.php">
+                    <button>View History</button>
+                </a>
                 <button id="add-human">Add Human</button>
                 <button id="refresh-page">Refresh Page</button>
+                <button id="reset-consumption">Reset consumption</button>
             </div>
         </div>
     </div>

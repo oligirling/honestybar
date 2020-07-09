@@ -2,6 +2,8 @@
 require __DIR__ . '/../vendor/autoload.php';
 $bar = new \Honest\Bar();
 $overall = $bar->getOverallLeaderboard();
+$men = $bar->getMaleLeaderboard();
+$women = $bar->getFemaleLeaderboard();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,43 +14,7 @@ $overall = $bar->getOverallLeaderboard();
 </head>
 <body class="page-leaderboard yellow">
 
-    <div id="devMenu" class="modal-toggle"></div>
-
-    <div class="" id="leaderboard-overall">
-
-    </div>
-
-    <div class="" id="leaderboard-sex">
-
-    </div>
-
-    <div class="" id="leaderboard-days">
-
-    </div>
-
-    <div class="" id="leaderboard-sesh">
-
-    </div>
-
-    <div class="" id="leaderboard-speedy-pint">
-
-    </div>
-
-    <div class="" id="leaderboard-longest">
-
-    </div>
-
-    <div class="" id="leaderboard-age">
-
-    </div>
-
-    <div class="" id="leaderboard-average-cost">
-
-    </div>
-
-    <div class="" id="leaderboard-consumption">
-
-    </div>
+<div id="devMenu" class="modal-toggle"></div>
 
     <div class="ranking-table-data-leader-1">
         <div class="medal-glasscase">
@@ -109,12 +75,27 @@ $overall = $bar->getOverallLeaderboard();
                     <div class="ranking-table-header-data h6">Total Pints</div>
                 </div>
 
-                <?php foreach ($bar->getFirstThree($overall) as $position => $person) :?>
+                <?php foreach ($bar->getFirstThree($men) as $position => $person) :?>
                     <?php $position = $position + 1 ?>
-                    <?php if ($person->isMale()) :?>
-                        <div class="ranking-table-row-leader-<?php echo $position ?>">
-                            <div class="ranking-table-data-leader-<?php echo $position ?>">
-                                <img src="images/trophy-<?php echo $position ?>.png">
+                    <div class="ranking-table-row-leader-<?php echo $position ?>">
+                        <div class="ranking-table-data-leader-<?php echo $position ?>">
+                            <img src="images/trophy-<?php echo $position ?>.png">
+                        </div>
+                        <div class="ranking-table-data">
+                            <?php echo $person->getFullName() ?>
+                        </div>
+                        <div class="ranking-table-data">
+                            <?php echo $person->getDrinks() ?> x <img src="images/beer.png">
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
+                <div class="ranking-table-body">
+                    <?php foreach ($bar->getRemaining($men) as $position => $person) :?>
+                        <?php $position = $position + 1 ?>
+                        <div class="ranking-table-row">
+                            <div class="ranking-table-data">
+                                <?php echo $position ?>
                             </div>
                             <div class="ranking-table-data">
                                 <?php echo $person->getFullName() ?>
@@ -123,25 +104,6 @@ $overall = $bar->getOverallLeaderboard();
                                 <?php echo $person->getDrinks() ?> x <img src="images/beer.png">
                             </div>
                         </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-
-                <div class="ranking-table-body">
-                    <?php foreach ($bar->getRemaining($overall) as $position => $person) :?>
-                        <?php if ($person->isMale()) :?>
-                            <?php $position = $position + 1 ?>
-                            <div class="ranking-table-row">
-                                <div class="ranking-table-data">
-                                    <?php echo $position ?>
-                                </div>
-                                <div class="ranking-table-data">
-                                    <?php echo $person->getFullName() ?>
-                                </div>
-                                <div class="ranking-table-data">
-                                    <?php echo $person->getDrinks() ?> x <img src="images/beer.png">
-                                </div>
-                            </div>
-                        <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -153,12 +115,27 @@ $overall = $bar->getOverallLeaderboard();
                     <div class="ranking-table-header-data h6">Total Pints</div>
                 </div>
 
-                <?php foreach ($bar->getFirstThree($overall) as $position => $person) :?>
-                    <?php if ($person->isFemale()) :?>
+                <?php foreach ($bar->getFirstThree($women) as $position => $person) :?>
+                    <?php $position = $position + 1 ?>
+                    <div class="ranking-table-row-leader-<?php echo $position ?>">
+                        <div class="ranking-table-data-leader-<?php echo $position ?>">
+                            <img src="images/trophy-<?php echo $position ?>.png">
+                        </div>
+                        <div class="ranking-table-data">
+                            <?php echo $person->getFullName() ?>
+                        </div>
+                        <div class="ranking-table-data">
+                            <?php echo $person->getDrinks() ?> x <img src="images/beer.png">
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
+                <div class="ranking-table-body">
+                    <?php foreach ($bar->getRemaining($women) as $position => $person) :?>
                         <?php $position = $position + 1 ?>
-                        <div class="ranking-table-row-leader-<?php echo $position ?>">
-                            <div class="ranking-table-data-leader-<?php echo $position ?>">
-                                <img src="images/trophy-<?php echo $position ?>.png">
+                        <div class="ranking-table-row">
+                            <div class="ranking-table-data">
+                                <?php echo $position ?>
                             </div>
                             <div class="ranking-table-data">
                                 <?php echo $person->getFullName() ?>
@@ -166,25 +143,6 @@ $overall = $bar->getOverallLeaderboard();
                             <div class="ranking-table-data">
                                 <?php echo $person->getDrinks() ?> x <img src="images/beer.png">
                             </div>
-                        </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-
-                <div class="ranking-table-body">
-                    <?php foreach ($bar->getRemaining($overall) as $position => $person) :?>
-                        <?php if ($person->isFemale()) :?>
-                            <?php $position = $position + 1 ?>
-                            <div class="ranking-table-row">
-                                <div class="ranking-table-data">
-                                    <?php echo $position ?>
-                                </div>
-                                <div class="ranking-table-data">
-                                    <?php echo $person->getFullName() ?>
-                                </div>
-                                <div class="ranking-table-data">
-                                    <?php echo $person->getDrinks() ?> x <img src="images/beer.png">
-                                </div>
-                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>

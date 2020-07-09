@@ -22,7 +22,7 @@ button:hover {
 }
 
 .center-elements {
-    margin: 0 auto;
+    margin: 100px auto 0;
     width: 400px;
     text-align: center;
 }
@@ -362,6 +362,7 @@ button:hover {
     border-radius: 25px;
     padding: 7px 10px;
     color: white;
+    margin-top: 10px;
 }
 
 

@@ -1,4 +1,4 @@
-version: "2.1" # change to 2.1 for pi
+version: "2.1"
 
 volumes:
   mariadb-data:
@@ -19,8 +19,8 @@ services:
       PHP_POST_MAX_SIZE: 250
       PHP_UPLOAD_MAX_FILESIZE: 250
     # remove the volume when using pi
-    volumes:
-      - .:/var/www/html
+    #volumes:
+    #  - .:/var/www/html
 
   wpe:
     restart: always

@@ -3,7 +3,7 @@ namespace Honest;
 
 class Person
 {
-    const BARCODE_LENGTH = 12;
+    const BARCODE_LENGTH = 15;
 
     /* @var Db */
     private $db;
@@ -45,6 +45,9 @@ class Person
     {
         $this->db = Db::instance();
         $result = $this->db->run('SELECT * from people where barcode = ?', [$this->barcode])->fetch();
+        if (!$result || empty($result)) {
+            throw new \Exception('Cant find user with barcode: ' . $this->barcode);
+        }
         $this->setId($result->id);
         $this->setFirstName($result->first_name);
         $this->setSecondName($result->last_name);

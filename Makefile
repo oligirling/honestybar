@@ -6,7 +6,7 @@ php-container := alpine-nginx-php-container
 mariadb-container := honestybar-mariadb
 
 start: ## Start the project containers
-	$(dc) up -d --remove-orphans
+	$(dc) up --remove-orphans
 
 stop: ## Stop the project containers
 	$(dc) down
@@ -19,8 +19,11 @@ exec-php: ## Open php container shell
 exec-mariadb: ## Open mariadb container bash
 	$(dc) exec $(mariadb-container) bash
 
-build-mariadb: ## Build mariadb container
+build-php: ## Build mariadb container
 	$(dc) build $(mariadb-container)
+
+build-mariadb: ## Build php container
+	$(dc) build $(php-container)
 
 help:
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-60s\033[0m %s\n", $$1, $$2}'

@@ -18,6 +18,25 @@ $( "form#pay" ).submit(function( event ) {
     });
 });
 
+$( "#reset-consumption" ).on( "click", function(e) {
+    e.preventDefault();
+
+    var confirmText = "Are you sure you want to reset everything?";
+    if(confirm(confirmText)) {
+        $.get(
+            "ajax/reset-consumption.php",
+        ).done( function(data) {
+            let dataObj = JSON.parse(data);
+            if(dataObj.status === 'failed') {
+                $("#reset-consumption").text(data.message)
+            } else {
+                $("#reset-consumption").text('Done. Refreshing')
+                refreshPage(2000);
+            }
+        });
+    }
+});
+
 $(".modal-toggle").on( "click", function(e) {
     e.preventDefault();
     $('.modal').toggleClass('is-visible');
@@ -72,7 +91,7 @@ function refreshPage(delay)
 
 function submitTestBarcode()
 {
-    $("#user-barcode").val('038678561129');
+    $("#user-barcode").val('0donpepe0000000');
     $("form#pay").submit();
     toggleGenerateButton();
 }
@@ -105,6 +124,7 @@ function updateText(mainText, data)
     mainText.fadeTo( "slow" , 0, function () {
         mainText.text(text);
     });
+    $('#scan-arrow-person').fadeTo( "slow" , 0);
 }
 
 function reshowText(mainText)
