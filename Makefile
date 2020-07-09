@@ -3,7 +3,7 @@
 dc-file := docker-compose.yml
 dc := docker-compose --file $(dc-file)
 php-container := alpine-nginx-php-container
-mariadb-container := honestybar-mariadb
+mariadb-container := honesty-bar-mariadb
 
 start: ## Start the project containers
 	$(dc) up --remove-orphans

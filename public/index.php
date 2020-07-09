@@ -38,7 +38,7 @@
         <center><img src="images/arrow.png" width="76px" height="76px"></center>
     </div>
     <form id="pay">
-        <input class="dev-element hidden user-barcode" name="user-barcode" id="user-barcode">
+        <input class="dev-element hidden user-barcode" autofocus name="user-barcode" id="user-barcode">
         <button class="dev-element hidden dev-button" type="submit">Submit</button>
     </form>
     <div class="generate-button hidden">

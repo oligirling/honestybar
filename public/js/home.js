@@ -1,6 +1,3 @@
-$("#user-barcode").focus();
-$("#user-barcode").triggerHandler( "focus" );
-
 $( "form#pay" ).submit(function( event ) {
     event.preventDefault();
 
