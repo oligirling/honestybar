@@ -40,8 +40,10 @@ $(".modal-toggle").on( "click", function(e) {
 });
 
 $('#showInputSubmit').on('change', function() {
+    $('.user-barcode').toggleClass('trans');
     $('.dev-element').toggleClass('hidden');
 });
+
 $('#showGenerateButton').on('change', function() {
     toggleGenerateButton();
 });
