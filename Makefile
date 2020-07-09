@@ -19,10 +19,10 @@ exec-php: ## Open php container shell
 exec-mariadb: ## Open mariadb container bash
 	$(dc) exec $(mariadb-container) bash
 
-build-php: ## Build mariadb container
+build-mariadb: ## Build mariadb container
 	$(dc) build $(mariadb-container)
 
-build-mariadb: ## Build php container
+build-php: ## Build php container
 	$(dc) build $(php-container)
 
 help:
